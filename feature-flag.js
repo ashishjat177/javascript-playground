@@ -17,8 +17,8 @@ const SAMPLE_FEATURES = {
     const MAX_CACHE_TTL = 10000;
     return {
         get: (featureName) => {
-            if(new Date() - cache_ttl < MAX_CACHE_TTL && cache[featureName]) {
-                return cache[featureName]
+            if (Date.now() - cache_ttl < MAX_CACHE_TTL && cache[featureName]) { // Updated to use Date.now()
+                return cache[featureName];
             }
         },
         has: (featureName) => {
@@ -29,7 +29,7 @@ const SAMPLE_FEATURES = {
         },
         set: (featureName, value) => {
             cache[featureName] = value;
-            cache_ttl = new Date();
+            cache_ttl = Date.now(); // Updated to use Date.now()
         }
     }
   }

@@ -5,12 +5,11 @@ function circuitBreaker(func, retriesCount, thresholdTime) {
 
     return function (...args) {
         console.log(`Current state: ${state}, Failure count: ${failureCount}`);
-    console.log(new Date() - timeSinceLastFailure)
-
+        console.log(Date.now() - timeSinceLastFailure); // Updated to use Date.now()
 
         // Check if the circuit is open (service is down)
         if (state === 'open') {
-            if (new Date() - timeSinceLastFailure >= thresholdTime) {
+            if (Date.now() - timeSinceLastFailure >= thresholdTime) { // Updated to use Date.now()
                 console.log("Attempting to move to half-open state");
                 state = 'half-open';
             } else {
@@ -35,6 +34,7 @@ function circuitBreaker(func, retriesCount, thresholdTime) {
 
             // Reset the failure count on successful call
             failureCount = 0;
+            timeSinceLastFailure = Date.now(); // Updated to use Date.now()
             return 'success data';
         } catch (error) {
             console.log(`Function failed: ${error}`);
@@ -43,7 +43,7 @@ function circuitBreaker(func, retriesCount, thresholdTime) {
             if (state === 'half-open') {
                 console.log("Service failed in half-open state. Moving to open.");
                 state = 'open';
-                timeSinceLastFailure = new Date(); 
+                timeSinceLastFailure = Date.now(); // Updated to use Date.now()
                 return 'Error';
             }
 
@@ -53,7 +53,7 @@ function circuitBreaker(func, retriesCount, thresholdTime) {
             if (failureCount >= retriesCount) {
                 console.log("Failure threshold exceeded. Circuit is open.");
                 state = 'open';
-                timeSinceLastFailure = new Date(); // Set the time of failure
+                timeSinceLastFailure = Date.now(); // Updated to use Date.now()
             }
             return 'main error'
         }

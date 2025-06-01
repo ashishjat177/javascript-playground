@@ -1,0 +1,38 @@
+Custom Role-Based Authorization Project
+"One of the most impactful projects I worked on was implementing role-based access control with custom roles in our application.
+
+The problem we faced was twofold:
+
+First, we had hardcoded checks in our frontend (React and Angular), like if (user.role === 'admin') to control feature access. 
+This made it very rigid and hard to scale.
+
+Second, many enterprise clients told us they didn’t want to give full admin access to their team members but still wanted to provide 
+partial access—like allowing some users to create campaigns but not manage billing. So we needed a more flexible solution.
+
+Our solution was to introduce Custom Roles. These allowed admins to clone any of the 4 main roles—admin, marketer, analyst, viewer—and then 
+customize permissions at a granular level.
+
+
+
+On the technical side, here’s what we did:
+
+First, we created a common utility function in both React and Angular that checks hasPermission(feature) instead of using hardcoded role checks.
+
+We fetched permissions from the backend via API and cached them on both frontend and backend to reduce latency.
+
+We also implemented a feature where, if a user's permissions changed while they were active, we would show a graceful warning and then force logout to refresh their session.
+
+One of the biggest challenges was coordination—this change affected all frontend teams. I worked directly with engineering managers and team leads across squads to explain the architecture, get their buy-in, and request a developer from each team to help with integration.
+
+After development, we ran multiple rounds of bug bashes and QA, since this impacted core access control. I also helped coordinate the release plan to ensure a smooth rollout.
+
+The project was a huge success—existing clients were very happy, and new clients saw this as a strong selling point. It significantly improved our access control flexibility while keeping things secure and maintainable."
+
+
+
+
+1. React vs Angular
+2. anything went wrong on prod and reaction of managers and how you handled it.
+3. what you don't like in reaction
+4. why migrated from angular to react
+5. why weglot

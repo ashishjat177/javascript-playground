@@ -1,0 +1,29 @@
+"**Another challenging project I worked on was enabling Localization in our product.
+
+The business challenge was clear: we couldn’t expand into key markets like Germany, Russia, and China because our product was entirely in English, and these markets strongly preferred products in their native languages.
+
+We started by doing a POC to decide whether we should build a localization framework from scratch—by maintaining key-value files for translations—or use a third-party library.
+
+After careful analysis, we realized that building it in-house would take around 5–6 months, plus maintenance every quarter. On the other hand, using a library like Weglot would take 
+around 20 days. So we chose the library approach to save time and effort.
+
+After integrating Weglot, we faced several challenges:
+
+        First, ensuring UX didn’t break—some components like modals, dropdowns, and buttons had layout issues with translated text.
+
+        Second, PII data should not be translated or sent to external APIs, so we had to exclude sensitive data.
+
+        Third, we had to ignore translating certain keywords or technical terms.
+
+        Fourth, we needed to ensure search functionality worked across languages.
+
+        Finally, we had to coordinate with multiple teams—engineering leads, project managers, designers, and QA—to handle their specific requirements.
+
+One of my key learnings from my earlier roles & permissions project was not to take everything on myself. So for this project, I proactively raised dependencies with each team and assigned ownership 
+for development and QA tasks. My role was primarily coordinating efforts, helping unblock technical challenges like search and dropdown issues, and ensuring alignment on design changes when needed.
+
+We also launched the feature behind a feature flag to ensure a safe rollout.
+
+The project was a big success—after launch, we were able to support multiple languages, enabling our expansion into new markets like Germany and Russia, which was a key business goal.
+
+Overall, this project helped me improve my leadership skills, especially around cross-team coordination, risk management, and stakeholder communication."

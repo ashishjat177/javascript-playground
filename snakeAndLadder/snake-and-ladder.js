@@ -120,6 +120,7 @@ function movePlayer(diceNumber) {
     else if(positions[currentPlayer] === WIN_POSITION) {
         const winnerElem = document.getElementById('winner');
         winnerElem.innerText = currentPlayer;
+        document.getElementById('start-btn').style.disable = true;
     }
 
     setCurrentPlayerBackground(positions[currentPlayer], newPosition, players[currentPlayer].color);
@@ -138,6 +139,7 @@ function reset() {
     });
 
     clearInterval(nextPlayerInterval);
+    document.getElementById('start-btn').style.disable = false;
 
     winner = null;
     currentPlayer = players[0].name;

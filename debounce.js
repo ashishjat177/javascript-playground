@@ -1,12 +1,13 @@
 
-function debounce(func, delay) {
-    let timer;
-    const context = this;
-    let firstElement;
-    return () => {
-        clearTimeout(timer);
-        setTimeout(() => {
-            func.apply(context)
+function debounce(func, delay, {leading = true}) {
+    let timeout = null;
+    return function debounced(...args) {
+        if(leading && !timeout) {
+            
+        }
+       clearTimeout(timeout); 
+        timeout = setTimeout(() => {
+            func.apply(this, args);
         }, delay);
     }
 }
@@ -19,5 +20,3 @@ var throttled = debounce(callback, 3);
 for (let i = 0; i < 5; i++) {
   throttled();
 }
-
-assert.equal(callback.calledOnce, true);

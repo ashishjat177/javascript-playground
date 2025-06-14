@@ -10,7 +10,7 @@ class EventEmitter {
         this.events[eventName].push(callback)
     }
 
-    once(eventName, callback) {
+    once = (eventName, callback) => {
         const onceWrapper = (...args) => {
             callback(...args);
             this.off(eventName, onceWrapper);
@@ -37,6 +37,8 @@ class EventEmitter {
         }
     }
 }
+
+
 
  const emmiter = new EventEmitter()
  const log = (...args) => console.log(...args)

@@ -24,6 +24,7 @@ const cachedApiCall = (expiryTime) => {
     }
 }
 
+
 const apiUrl = 'https://jsonplaceholder.typicode.com/posts';
 const call = cachedApiCall(500);
 call(apiUrl, {}).then((a) => console.log(a));

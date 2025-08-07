@@ -63,6 +63,45 @@ function throttle (func, delay, {leading = true, trailing = true}) {
 //    func('func called');
 // }
 
+function throttle(fn, delay, options = { leading: true, trailing: false }) {
+    const { leading, trailing } = options;
+    
+    let lastInvoked = 0;
+    let timeout = null
+    let lastArgs = null;
+    let lastContext = null;
+
+    function throttled(...args) {
+        const currentTime = Date.now();
+        lastArgs = args;
+        lastContext = this;
+
+        const invoke = () => {
+            fn.apply(lastContext, lastArgs);
+            lastInvoked = Date.now();
+            lastArgs = lastContext = null
+        }
+
+        if(!leading && !lastInvoked) {
+            lastInvoked = currentTime;
+        }
+
+        if(leading && !lastInvoked) {
+            invoke();
+        } else if(currentTime - lastInvoked > delay) {
+            invoke();
+        } else if(trailing && !timeout) {
+            const remainingTime = delay - ( currentTime - lastInvoked);
+            timeout = setTimeout(() => {
+                timeout = null;
+                invoke();
+            }, remainingTime);
+        }
+    }
+
+    return throttled;
+}
+
 const throttledFunc1 = throttle(console.log, 1000, {leading: true});
 
 setInterval(() => {

@@ -7,11 +7,6 @@ class MyPromise {
 }
 
 
-
-
-
-
-
 function fetcher(message, delay, failIt) {
     return () => {
         return new Promise((resolve, reject) => {
@@ -51,8 +46,6 @@ function myAll(promises) {
                 reject(err)
             })
         });
-
-
     })
 }
 

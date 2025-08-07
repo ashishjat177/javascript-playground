@@ -1,13 +1,28 @@
 
-function debounce(func, delay, {leading = true}) {
+function debounce(func, delay, {leading = true, trailing = true}) {
     let timeout = null;
+    let isLeadingInvoked = false;
     return function debounced(...args) {
-        if(leading && !timeout) {
-            
-        }
-       clearTimeout(timeout); 
+      const context = this;
+
+      if(timeout) {
+        clearTimeout(timeout);
+      }  
+
+       if(leading && !timeout) {
+        console.log('called with leading')
+        func.apply(context, args);
+        isLeadingInvoked = true;
+       } else {
+        isLeadingInvoked = false;
+       }
+
         timeout = setTimeout(() => {
-            func.apply(this, args);
+          if(trailing && !isLeadingInvoked) {
+            console.log('called after trailing')
+            func.apply(context, args);
+            timeout = null;
+          }
         }, delay);
     }
 }
@@ -15,8 +30,13 @@ function debounce(func, delay, {leading = true}) {
 
 
 var callback = function() { console.log('a') };
-var throttled = debounce(callback, 3);
+var debouncedFunc = debounce(callback, 300, {leading: true, trailing: true});
 
 for (let i = 0; i < 5; i++) {
-  throttled();
+  debouncedFunc();
 }
+
+setTimeout(() => {
+  console.log('from set timeout')
+  debouncedFunc();
+}, 800);

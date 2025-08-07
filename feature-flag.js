@@ -49,8 +49,15 @@ function getFeatureState(featureName, defaultValue) {
         return defaultValue;
     })
   }
-  
 
+
+  const fetchAllFeatures1 = () => {
+     return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(SAMPLE_FEATURES);
+        }, 1000);
+     })
+  }
 
   getFeatureState("show-pricing-v2")
   .then(function(isEnabled) {

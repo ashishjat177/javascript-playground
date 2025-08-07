@@ -1,0 +1,12 @@
+1. DOM vs BOM 
+    DOM -> document object model represents the HTML document structure as a tree of objects that javascript can interact with. 
+     DOM APIs:
+            document, getElementById, querySelector, createElement, etc.
+
+    BOM -> Browser object model represets the everything provided by browser outside the document, like the window, history, location, screen size etc.
+        BOM apis: 
+            window, navigator, location, alert, screen, history
+
+
+2. Closure -> 
+    A closure is when a function remembers its lexical scope, even after the main functions has finished execution.
